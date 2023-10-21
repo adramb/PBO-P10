@@ -2,56 +2,72 @@ package SalonCantika;
 
 import java.util.Scanner;
 
-public class Salon {
+class Salon {
+    private String nama;
+    private String noTelepon;
+
+    public Salon(String nama, String noTelepon) {
+        this.nama = nama;
+        this.noTelepon = noTelepon;
+    }
+
+    public void menu() {
+        Scanner input = new Scanner(System.in);
+        Perawatan perawatan = new Perawatan();
+        Sewa sewa = new Sewa();
+
+        int totalHargaPerawatan = 0;
+        int totalHargaSewa = 0;
+
+        char ulang;
+        do {
+            System.out.println("Menu Pilihan Yang Tersedia:");
+            System.out.println("1. Perawatan");
+            System.out.println("2. Penyewaan");
+            System.out.println("---------------------o0o--------------------");
+            System.out.print("Pilihan menu : ");
+            int pilihanMenu = input.nextInt();
+            System.out.println("---------------------o0o--------------------");
+
+            switch (pilihanMenu) {
+                case 1:
+                    perawatan.pilihanJenisPerawatan();
+                    totalHargaPerawatan += perawatan.hargaPerawatan();
+                    break;
+                case 2:
+                    sewa.pilihanJenisSewa();
+                    totalHargaSewa += sewa.hargaSewa();
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+
+            System.out.print("\nIngin memasukkan data lagi? (y/t): ");
+            ulang = input.next().charAt(0);
+            System.out.println("---------------------o0o--------------------");
+        } while (ulang == 'y' || ulang == 'Y');
+
+        int totalHarga = totalHargaPerawatan + totalHargaSewa;
+        System.out.println("Total yang harus dibayar: Rp. " + totalHarga + ",-");
+        System.out.println();
+        System.out.println("Terima kasih " + nama
+                + " Sudah Datang Di Salon Cantika \nMembuat Anda cantik adalah keahlian kami");
+        System.out.println();
+    }
+
     public static void main(String[] args) {
-        try (Scanner scanner = new Scanner(System.in)) {
-            String nama, noTelepon;
-            double totalHarga = 0;
-
-            System.out.print("Masukkan nama: ");
-            nama = scanner.nextLine();
-
-            System.out.print("Masukkan nomor telepon: ");
-            noTelepon = scanner.nextLine();
-
-            char lanjutkan;
-            do {
-                System.out.println("Pilihan Menu (Ketik 1/2)");
-                System.out.print("1. Perawatan\n2. Penyewaan\nPilihan Anda: ");
-                int pilihanMenu = scanner.nextInt();
-
-                if (pilihanMenu == 1) {
-                    System.out.println("Menu Perawatan");
-                    System.out.println("1. Fasial Wajah");
-                    System.out.println("2. Masker");
-                    System.out.println("3. Potong Rambut");
-                    System.out.print("Pilih jenis perawatan (1/2/3): ");
-                    int pilihanPerawatan = scanner.nextInt();
-                    System.out.print("Jumlah orang: ");
-                    int jumlahOrang = scanner.nextInt();
-
-                    double totalPerawatan = Perawatan.hitungTotalPerawatan(pilihanPerawatan, jumlahOrang);
-                    totalHarga += totalPerawatan;
-                } else if (pilihanMenu == 2) {
-                    System.out.println("Menu Penyewaan");
-                    System.out.println("1. Rias Wajah");
-                    System.out.println("2. Baju Pengantin");
-                    System.out.println("3. Aksesoris");
-                    System.out.print("Pilih jenis sewa (1/2/3): ");
-                    int pilihanSewa = scanner.nextInt();
-                    System.out.print("Jumlah jam sewa: ");
-                    int jumlahJam = scanner.nextInt();
-
-                    double totalSewa = Sewa.hitungTotalSewa(pilihanSewa, jumlahJam);
-                    totalHarga += totalSewa;
-                }
-
-                System.out.print("Ingin input lagi? [Y/T]: ");
-                lanjutkan = scanner.next().charAt(0);
-            } while (lanjutkan == 'Y' || lanjutkan == 'y');
-
-            System.out.println("Terima kasih, " + nama + "!");
-            System.out.println("Total yang harus dibayar: " + totalHarga);
-        }
+        Scanner input = new Scanner(System.in);
+        System.out.println();
+        System.out.println("=============================================");
+        System.out.println("--- Selamat Datang Di Salon Cantika ---");
+        System.out.println("=============================================");
+        System.out.print("Masukkan nama Pelanggan    : ");
+        String nama = input.nextLine();
+        System.out.print("Masukkan No.Telp Pelanggan : ");
+        String noTelepon = input.nextLine();
+        System.out.println();
+        System.out.println("---------------------o0o--------------------");
+        Salon salon = new Salon(nama, noTelepon);
+        salon.menu();
     }
 }
