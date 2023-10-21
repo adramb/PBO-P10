@@ -1,30 +1,70 @@
 package SalonCantika;
 
-public class Sewa {
-    public static double hitungHargaSewa(int pilihanSewa, int jumlahJam) {
-        double harga = 0;
-        if (pilihanSewa == 1) {
-            harga = 100000;
-        } else if (pilihanSewa == 2) {
-            harga = 250000;
-        } else if (pilihanSewa == 3) {
-            if (jumlahJam == 1) {
-                harga = 150000;
-            } else if (jumlahJam == 2) {
-                harga = 350000;
+import java.util.Scanner;
+
+class Sewa {
+    private String jenisSewa;
+    private int hargaSewa;
+    private int jumlahJamSewa;
+
+    public void pilihanJenisSewa() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Pilihan Jenis Penyewaan:");
+        System.out.println("1. Rias Wajah (Biasa / MUA)");
+        System.out.println("2. Baju Pengantin(Adat / International)");
+        System.out.println("3. Aksesoris (Anak / Dewasa)");
+        System.out.println("---------------------o0o--------------------");
+        System.out.print("Pilihan anda : ");
+        int pilihan = input.nextInt();
+        System.out.println("---------------------o0o--------------------");
+        if (pilihan == 1) {
+            System.out.println("============= MENU RIAS WAJAH ============");
+            System.out.println("1. Rias Wajah Biasa Rp.100.000;");
+            System.out.println("2. Rias Wajah (Make up Artis) Rp.250.000;");
+            System.out.println("---------------------o0o--------------------");
+            System.out.print("Pilihan anda : ");
+            pilihan = input.nextInt();
+            System.out.println("---------------------o0o--------------------");
+            if (pilihan == 1) {
+                hargaSewa = 100000;
+            } else {
+                hargaSewa = 250000;
             }
-        } else if (pilihanSewa == 4) {
-            if (jumlahJam == 1) {
-                harga = 20000;
-            } else if (jumlahJam == 2) {
-                harga = 50000;
+        } else if (pilihan == 2) {
+            System.out.println("============= MENU BAJU PENGANTIN ============");
+            System.out.println("1. Baju Pengantin Adat Rp.150.000;");
+            System.out.println("2. aju Pengantin International Rp.350.000;");
+            System.out.println("---------------------o0o--------------------");
+            System.out.print("Pilihan anda : ");
+            pilihan = input.nextInt();
+            System.out.println("---------------------o0o--------------------");
+            if (pilihan == 1) {
+                hargaSewa = 150000;
+            } else {
+                hargaSewa = 350000;
+            }
+        } else if (pilihan == 3) {
+            System.out.println("============= MENU AKSESORIS ============");
+            System.out.println("1. Aksesoris Anak Rp.20.000;");
+            System.out.println("2. Aksesoris Dewasa Rp.50.000;");
+            System.out.println("---------------------o0o--------------------");
+            System.out.print("Pilihan anda : ");
+            pilihan = input.nextInt();
+            System.out.println("---------------------o0o--------------------");
+            if (pilihan == 1) {
+                hargaSewa = 20000;
+            } else {
+                hargaSewa = 50000;
             }
         }
-        return harga;
+        System.out.print("Jumlah jam sewa : ");
+        jumlahJamSewa = input.nextInt();
+        System.out.println("Data Tersimpan");
+        System.out.println("Harga sebesar : " + hargaSewa * jumlahJamSewa);
+        System.out.println("---------------------o0o--------------------");
     }
 
-    public static double hitungTotalSewa(int pilihanSewa, int jumlahJam) {
-        double hargaSewa = hitungHargaSewa(pilihanSewa, jumlahJam);
-        return hargaSewa * jumlahJam;
+    public int hargaSewa() {
+        return hargaSewa * jumlahJamSewa;
     }
 }
