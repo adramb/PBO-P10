@@ -70,6 +70,9 @@ public class Main {
             System.out.println();
             System.out.printf("Kewajiban Bulanan: Rp%,.2f%n", pprbag.getKewajibanBulanan());
             System.out.printf("Total Wajib Bayar: Rp%,.2f%n", pprbag.getTotalWajibBayar());
+            System.out.println();
+            System.out.println("Terima kasih Sudah Meminjam di THE SOLUTION OF MONEY");
+            System.out.println("pusing dengan keuangan... kami solusinya (*_*)");
         } else {
             System.out.println("Pilihan tidak valid.");
         }
